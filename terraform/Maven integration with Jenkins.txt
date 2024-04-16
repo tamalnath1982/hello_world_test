@@ -1,0 +1,35 @@
+1. Open Apache Maven product. https://maven.apache.org/
+2. Copy the download link. apache-maven-3.9.6-bin.tar.gz link
+(https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz)
+3. go to Jenkins instance terminal and install the Maven
+4. Commands...
+#cd /opt # to download maven at /opt directory
+#wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz # to download the maven
+#tar -xzvf apache-maven-3.9.6-bin.tar.gz # to unzip the apache-maven-3.9.6-bin.tar.gz file
+#ls #to see files in the directory
+#mv apache maven 3.9.6 maven # to simplify the directory name apache maven 3.9.6 as maven
+#ls # to see the change
+#vi /home/ec2-user/.bash_profile # go to /home/ec2-user/.bash_profile to enter 2 more profiles...
+
+hit i to insert.
+
+Under
+# user specific environment and startup programs
+M2_Home=/opt/maven
+M2=/opt/maven/bin
+
+Add same in the PATH section,
+....bin:$M2_Home:$M2
+
+press Esc then
+:wq(enter) # to save and exit from insert mode from ~/.bash_profile file
+#source /home/ec2-user/.bash_profile # to apply the new changes
+#mvn --version # to check the maven installation and version
+
+5. Go to Jenkins Dashboard
+6. Manage Jenkins --> Manage Plugins --> goto available tab, search for maven
+7. select maven integration and maven invoker
+8. Install without restart
+9. Setup the path for Maven according to the M2_HOME veriable
+10. Go to Jenkins Dashboard --> Manage Jenkins --> tool configuration 
+11. Under MAVEN section, update Name as M2_HOME (Remove Autometically installed), MAVEN_HOME (/opt/maven) Apply and SAVE.
